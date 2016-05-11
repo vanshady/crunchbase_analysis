@@ -5,7 +5,9 @@ var Sequelize = require("sequelize");
 var sequelize = new Sequelize('crunchbase', 'root', null, {
   host: 'localhost',
   dialect: 'mysql',
-
+  define: {
+    timestamps: false,
+  },
   pool: {
     max: 5,
     min: 0,
@@ -27,9 +29,8 @@ var Relationship = sequelize.import(__dirname + "/models/cb_relationships");
 
 sequelize
   .authenticate()
-  .then(function(err) {
+  .then(function (err) {
     console.log('Connection has been established successfully.');
-  }, function (err) { 
+  }, function (err) {
     console.log('Unable to connect to the database:', err);
   });
-  
