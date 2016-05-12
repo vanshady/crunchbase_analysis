@@ -1,31 +1,31 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('investments', {
+module.exports = (sequelize, DataTypes) => (
+  sequelize.define('investments', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     funding_round_id: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
     },
     funded_object_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     investor_object_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'cb_investments'
-  });
-};
+    tableName: 'cb_investments',
+  })
+);

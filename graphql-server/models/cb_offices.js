@@ -1,67 +1,67 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('offices', {
+module.exports = (sequelize, DataTypes) => (
+  sequelize.define('offices', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     object_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     office_id: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     region: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     address1: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     address2: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     zip_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     state_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     country_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     latitude: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     longitude: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'cb_offices'
-  });
-};
+    tableName: 'cb_offices',
+  })
+);

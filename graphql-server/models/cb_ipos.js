@@ -1,59 +1,59 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('ipos', {
+module.exports = (sequelize, DataTypes) => (
+  sequelize.define('ipos', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     ipo_id: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
     },
     object_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     valuation_amount: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     valuation_currency_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     raised_amount: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     raised_currency_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     public_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     stock_symbol: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     source_url: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     source_description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'cb_ipos'
-  });
-};
+    tableName: 'cb_ipos',
+  })
+);

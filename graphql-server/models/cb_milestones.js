@@ -1,43 +1,43 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('milestones', {
+module.exports = (sequelize, DataTypes) => (
+  sequelize.define('milestones', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     object_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     milestone_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     milestone_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     source_url: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     source_description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'cb_milestones'
-  });
-};
+    tableName: 'cb_milestones',
+  })
+);

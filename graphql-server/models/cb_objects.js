@@ -1,168 +1,168 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('objects', {
+module.exports = (sequelize, DataTypes) => (
+  sequelize.define('objects', {
     id: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     entity_type: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     entity_id: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
     },
     parent_id: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     normalized_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     permalink: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     category_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     status: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: 'operating'
+      defaultValue: 'operating',
     },
     founded_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     closed_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     domain: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     homepage_url: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     twitter_username: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     logo_url: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     logo_width: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     logo_height: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     short_description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     overview: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: true,
     },
     tag_list: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     country_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     state_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     region: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     first_investment_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     last_investment_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     investment_rounds: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     invested_companies: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     first_funding_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     last_funding_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     funding_rounds: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     funding_total_usd: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     first_milestone_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     last_milestone_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     milestones: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     relationships: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     created_by: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'cb_objects'
-  });
-};
+    tableName: 'cb_objects',
+  })
+);

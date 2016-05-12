@@ -1,101 +1,101 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('funding_rounds', {
+module.exports = (sequelize, DataTypes) => (
+  sequelize.define('funding_rounds', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     funding_round_id: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
     },
     object_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     funded_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     funding_round_type: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     funding_round_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     raised_amount_usd: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     raised_amount: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     raised_currency_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     pre_money_valuation_usd: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     pre_money_valuation: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     pre_money_currency_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     post_money_valuation_usd: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     post_money_valuation: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     post_money_currency_code: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     participants: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
     },
     is_first_round: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
-      defaultValue: '0'
+      defaultValue: '0',
     },
     is_last_round: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
-      defaultValue: '0'
+      defaultValue: '0',
     },
     source_url: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     source_description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     created_by: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'cb_funding_rounds'
-  });
-};
+    tableName: 'cb_funding_rounds',
+  })
+);

@@ -1,52 +1,52 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('relationships', {
+module.exports = (sequelize, DataTypes) => (
+  sequelize.define('relationships', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     relationship_id: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
     },
     person_object_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     relationship_object_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     start_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     end_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     is_past: {
       type: DataTypes.INTEGER(4),
-      allowNull: true
+      allowNull: true,
     },
     sequence: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
-      defaultValue: '0'
+      defaultValue: '0',
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'cb_relationships'
-  });
-};
+    tableName: 'cb_relationships',
+  })
+);
