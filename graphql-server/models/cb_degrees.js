@@ -1,5 +1,7 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('cb_degrees', {
+var People;
+
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define('degrees', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -7,6 +9,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     object_id: {
       type: DataTypes.STRING,
+      references: {
+        model: People,
+        key: 'object_id',
+      },
       allowNull: false
     },
     degree_type: {
@@ -34,6 +40,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'cb_degrees'
-  });
+      tableName: 'cb_degrees'
+    });
 };

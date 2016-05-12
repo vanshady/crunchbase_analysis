@@ -1,12 +1,19 @@
+var Degree;
+
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('cb_people', {
+  return sequelize.define('people', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      //primaryKey: true
     },
     object_id: {
       type: DataTypes.STRING,
+      // references: {
+      //   model: Degree,
+      //   key: 'object_id',
+      // },
+      primaryKey: true,
       allowNull: false
     },
     first_name: {

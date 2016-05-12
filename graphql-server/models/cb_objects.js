@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('cb_objects', {
+  return sequelize.define('objects', {
     id: {
       type: DataTypes.STRING,
       allowNull: false,

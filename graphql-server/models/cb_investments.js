@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('cb_investments', {
+  return sequelize.define('investments', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
