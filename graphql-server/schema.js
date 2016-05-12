@@ -1,11 +1,8 @@
 // Including dependency
 const Sequelize = require('sequelize');
 const graphql = require('graphql');
-const graphqlHTTP = require('express-graphql');
 const _ = require('lodash');
 import { resolver, attributeFields } from 'graphql-sequelize';
-const express = require('express');
-const app = express();
 
 import {
   GraphQLObjectType,
@@ -78,6 +75,8 @@ People
     });
   });
 
+
+/* ------------ GraphQL ------------ */
 const degreeType = new GraphQLObjectType({
   name: 'Degree',
   fields: _.assign(attributeFields(Degree)),
@@ -113,12 +112,4 @@ const schema = new GraphQLSchema({
   }),
 });
 
-app
-  .use('/graphql', graphqlHTTP({
-    schema,
-    graphiql: true,
-    pretty: true,
-  }))
-  .listen(3000, () => {
-    console.log('GraphQL server running on http:// localhost:3000/graphql');
-  });
+module.exports = schema;
