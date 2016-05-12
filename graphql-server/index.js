@@ -2,9 +2,18 @@
 var Sequelize = require("sequelize");
 var graphql = require('graphql');
 var graphqlHTTP = require('express-graphql');
-var resolver = require('graphql-sequelize').resolver;
+import resolver from 'graphql-sequelize';
 var express = require('express');
 var app = express();
+
+import {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLSchema,
+  GraphQLList,
+  GraphQLNonNull
+} from 'graphql';
 
 //Setting up the config
 var config = require('./config')
@@ -66,72 +75,118 @@ People
       console.log(d.get('institution'));
     });
   });
-  
-var degreeType = new graphql.GraphQLObjectType({
+
+var degreeType = new GraphQLObjectType({
   name: 'Degree',
-  fields: {
-    id: {
-      type: graphql.GraphQLInt,
-    },
-    object_id: {
-      type: graphql.GraphQLString
-    },
-    degree_type: {
-      type: graphql.GraphQLString,
-    },
-    subject: {
-      type: graphql.GraphQLString,
-    },
-    institution: {
-      type: graphql.GraphQLString,
-    },
-    graduated_at: {
-      type: graphql.GraphQLString,
+  fields() {
+    return {
+      id: {
+        type: GraphQLInt,
+        resolve(degree) {
+          return degree.id;
+        }
+      },
+      object_id: {
+        type: GraphQLString,
+        resolve(degree) {
+          return degree.object_id;
+        }
+      },
+      degree_type: {
+        type: GraphQLString,
+        resolve(degree) {
+          return degree.degree_type;
+        }
+      },
+      subject: {
+        type: GraphQLString,
+        resolve(degree) {
+          return degree.subject;
+        }
+      },
+      institution: {
+        type: GraphQLString,
+        resolve(degree) {
+          return degree.institution;
+        }
+      },
+      graduated_at: {
+        type: GraphQLString,
+        resolve(degree) {
+          return degree.graduated_at;
+        }
+      }
     }
   }
 });
 
-var peopleType = new graphql.GraphQLObjectType({
+var peopleType = new GraphQLObjectType({
   name: 'People',
-  fields: {
-    id: {
-      type: graphql.GraphQLInt,
-    },
-    object_id: {
-      type: graphql.GraphQLString
-    },
-    first_name: {
-      type: graphql.GraphQLString
-    },
-    last_name: {
-      type: graphql.GraphQLString
-    },
-    birthplace: {
-      type: graphql.GraphQLString
-    },
-    affiliation_name: {
-      type: graphql.GraphQLString
-    },
-    degree: {
-      type: degreeType,
-      resolve: resolver(People.Degrees)
+  fields() {
+    return {
+      id: {
+        type: GraphQLInt,
+        resolve(people) {
+          return people.id;
+        }
+      },
+      object_id: {
+        type: GraphQLString,
+        resolve(people) {
+          return people.object_id;
+        }
+      },
+      first_name: {
+        type: GraphQLString,
+        resolve(people) {
+          return people.first_name;
+        }
+      },
+      last_name: {
+        type: GraphQLString,
+        resolve(people) {
+          return people.last_name;
+        }
+      },
+      birthplace: {
+        type: GraphQLString,
+        resolve(people) {
+          return people.birthplace;
+        }
+      },
+      affiliation_name: {
+        type: GraphQLString,
+        resolve(people) {
+          return people.affiliation_name;
+        }
+      },
+      degrees: {
+        type: new GraphQLList(degreeType),
+        resolve(people) {
+          return people.getDegrees();
+        }
+      }
     }
   }
 });
 
-var schema = new graphql.GraphQLSchema({
-  query: new graphql.GraphQLObjectType({
+var schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
     name: 'Query',
-    fields: {
-      people: {
-        type: peopleType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: graphql.GraphQLString
+    fields() {
+      return {
+        people: {
+          type: peopleType,
+          args: {
+            object_id: {
+              description: 'id of the user',
+              type: GraphQLString
+            }
+          },
+          resolve(root, args) {
+            return People.findOne({ where: args });
           }
-        },
-        resolve: resolver(People)
+        }
       }
     }
   })
@@ -143,6 +198,6 @@ app
     graphiql: true,
     pretty: true
   }))
-  .listen(3000, function() {
+  .listen(3000, function () {
     console.log('GraphQL server running on http://localhost:3000/graphql');
   });
