@@ -1,5 +1,3 @@
-var People;
-
 module.exports = (sequelize, DataTypes) => (
   sequelize.define('degrees', {
     id: {
@@ -9,10 +7,6 @@ module.exports = (sequelize, DataTypes) => (
     },
     object_id: {
       type: DataTypes.STRING,
-      references: {
-        model: People,
-        key: 'object_id',
-      },
       allowNull: false,
     },
     degree_type: {

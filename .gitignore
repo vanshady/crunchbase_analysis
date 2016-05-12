@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 crunchbase_2013_snapshot_20131212
 npm-debug.log
+npm-debug.log.*

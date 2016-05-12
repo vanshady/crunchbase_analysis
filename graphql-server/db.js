@@ -41,6 +41,27 @@ People.Degrees = People.hasMany(Degree, {
   foreignKey: 'object_id',
 });
 
+Relationship.belongsTo(People, {
+  as: 'people',
+  foreignKey: 'person_object_id',
+  targetKey: 'object_id',
+});
+
+People.Relationships = People.hasMany(Relationship, {
+  as: 'relationships',
+  foreignKey: 'person_object_id',
+});
+
+Relationship.belongsTo(Object, {
+  as: 'object',
+  foreignKey: 'relationship_object_id',
+});
+
+Object.Relationships = Object.hasMany(Relationship, {
+  as: 'relationship',
+  foreignKey: 'relationship_object_id',
+});
+
 // Sequelize test
 Degree
   .findOne({
@@ -59,6 +80,33 @@ People
   .then((people) => {
     people.degrees.map((d) => {
       console.log(d.get('institution'));
+    });
+  });
+
+Relationship
+  .findAll({
+    where: { person_object_id: 'p:3262' },
+    include: [
+      { model: Object, as: 'object' },
+      { model: People, as: 'people' },
+    ],
+  })
+  .then((relationships) => {
+    relationships.map((r) => {
+      if (r.object) {
+        console.log(r.people.get('last_name') + ' works at ' + r.object.get('name'));
+      }
+    });
+  });
+
+Object
+  .findOne({
+    where: { id: 'c:1' },
+    include: [{ model: Relationship, as: 'relationship' }],
+  })
+  .then((people) => {
+    people.relationship.map((d) => {
+      console.log(d.get('title'));
     });
   });
 
