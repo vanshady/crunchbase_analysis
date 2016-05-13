@@ -30,7 +30,7 @@ const People = sequelize.import(__dirname + '/models/cb_people');
 const Relationship = sequelize.import(__dirname + '/models/cb_relationships');
 
 // Association
-Degree.belongsTo(People, {
+Degree.People = Degree.belongsTo(People, {
   as: 'people',
   foreignKey: 'object_id',
   targetKey: 'object_id',
@@ -41,7 +41,7 @@ People.Degrees = People.hasMany(Degree, {
   foreignKey: 'object_id',
 });
 
-Relationship.belongsTo(People, {
+Relationship.People = Relationship.belongsTo(People, {
   as: 'people',
   foreignKey: 'person_object_id',
   targetKey: 'object_id',
@@ -52,7 +52,7 @@ People.Relationships = People.hasMany(Relationship, {
   foreignKey: 'person_object_id',
 });
 
-Relationship.belongsTo(Object, {
+Relationship.Objects = Relationship.belongsTo(Object, {
   as: 'object',
   foreignKey: 'relationship_object_id',
 });
@@ -62,29 +62,57 @@ Object.Relationships = Object.hasMany(Relationship, {
   foreignKey: 'relationship_object_id',
 });
 
-Office.belongsTo(Object, {
+Office.Objects = Office.belongsTo(Object, {
   as: 'object',
   foreignKey: 'object_id',
 });
 
-Object.Office = Object.hasOne(Office, {
+Object.Offices = Object.hasOne(Office, {
   as: 'office',
   foreignKey: 'object_id',
 });
 
-Object.belongsToMany(Object, {
+Object.Acquired = Object.belongsToMany(Object, {
   as: 'acquiredBy',
   through: Acquisition,
   foreignKey: 'acquired_object_id',
   targetKey: 'acquiring_object_id',
 });
 
-Object.belongsToMany(Object, {
+Object.Acquire = Object.belongsToMany(Object, {
   as: 'acquire',
   through: Acquisition,
   foreignKey: 'acquiring_object_id',
   targetKey: 'acquiried_object_id',
 });
+
+Fund.Investments = Fund.belongsToMany(Object, {
+  as: 'investment',
+  through: Investment,
+  foreignKey: 'investor_object_id',
+  targetKey: 'funded_object_id',
+});
+
+// Object.Employees = Object.belongsToMany(People, {
+//   as: 'employee',
+//   through: Relationship,
+//   foreignKey: 'relationship_object_id',
+//   targetKey: 'person_object_id',
+// });
+
+People.Companies = People.belongsToMany(Object, {
+  as: 'company',
+  through: Relationship,
+  foreignKey: 'person_object_id',
+  targetKey: 'relationship_object_id',
+});
+
+// People.Funds = People.belongsToMany(Fund, {
+//   as: 'fund',
+//   through: Relationship,
+//   foreignKey: 'person_object_id',
+//   targetKey: 'relationship_object_id',
+// });
 
 module.exports = {
   Acquisition,

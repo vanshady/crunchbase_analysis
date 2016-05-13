@@ -83,6 +83,18 @@ const PeopleType = new GraphQLObjectType({
         separate: true,
       }),
     },
+    company: {
+      type: new GraphQLList(ObjectType),
+      resolve: resolver(People.Companies, {
+        separate: true,
+      }),
+    },
+    // fund: {
+    //   type: new GraphQLList(FundType),
+    //   resolve: resolver(People.Funds, {
+    //     separate: true,
+    //   }),
+    // },
   }),
 });
 
@@ -99,6 +111,106 @@ const schema = new GraphQLSchema({
           },
         },
         resolve: resolver(People),
+      },
+      acquisition: {
+        type: AcquisitionType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(Acquisition),
+      },
+      degree: {
+        type: DegreeType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(Degree),
+      },
+      fundingRound: {
+        type: FundingRoundType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(FundingRound),
+      },
+      fund: {
+        type: FundType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(Fund),
+      },
+      investment: {
+        type: InvestmentType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(Investment),
+      },
+      IPO: {
+        type: IPOType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(IPO),
+      },
+      milestone: {
+        type: MilestoneType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(Milestone),
+      },
+      object: {
+        type: ObjectType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(Object),
+      },
+      office: {
+        type: OfficeType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(Office),
+      },
+      relationship: {
+        type: RelationshipType,
+        args: {
+          object_id: {
+            description: 'id of the user',
+            type: GraphQLString,
+          },
+        },
+        resolve: resolver(Relationship),
       },
     },
   }),
