@@ -33,7 +33,6 @@ const Relationship = sequelize.import(__dirname + '/models/cb_relationships');
 Degree.People = Degree.belongsTo(People, {
   as: 'people',
   foreignKey: 'object_id',
-  targetKey: 'object_id',
 });
 
 People.Degrees = People.hasMany(Degree, {
@@ -44,7 +43,6 @@ People.Degrees = People.hasMany(Degree, {
 Relationship.People = Relationship.belongsTo(People, {
   as: 'people',
   foreignKey: 'person_object_id',
-  targetKey: 'object_id',
 });
 
 People.Relationships = People.hasMany(Relationship, {
@@ -93,12 +91,12 @@ Fund.Investments = Fund.belongsToMany(Object, {
   targetKey: 'funded_object_id',
 });
 
-// Object.Employees = Object.belongsToMany(People, {
-//   as: 'employee',
-//   through: Relationship,
-//   foreignKey: 'relationship_object_id',
-//   targetKey: 'person_object_id',
-// });
+Object.Employees = Object.belongsToMany(People, {
+  as: 'employee',
+  through: Relationship,
+  foreignKey: 'relationship_object_id',
+  targetKey: 'person_object_id',
+});
 
 People.Companies = People.belongsToMany(Object, {
   as: 'company',

@@ -15,7 +15,7 @@ import {
 Degree
   .findOne({
     where: { object_id: 'p:3262' },
-    include: [{ model: People, as: 'people' }],
+    include: [{ all: true }],
   })
   .then((degree) => {
     console.log(degree.people.get('first_name') + ' ' + degree.people.get('last_name'));
@@ -24,7 +24,7 @@ Degree
 People
   .findOne({
     where: { object_id: 'p:3262' },
-    include: [{ model: Degree, as: 'degrees' }],
+    include: [{ all: true }],
   })
   .then((people) => {
     people.degrees.map((d) => {
@@ -35,10 +35,7 @@ People
 Relationship
   .findAll({
     where: { person_object_id: 'p:3262' },
-    include: [
-      { model: Object, as: 'object' },
-      { model: People, as: 'people' },
-    ],
+    include: [{ all: true }],
   })
   .then((relationships) => {
     relationships.map((r) => {
@@ -52,7 +49,7 @@ Object
   .findOne({
     where: { id: 'c:10' },
     include: [
-      { model: Object, as: 'acquiredBy', through: Acquisition },
+      { all: true },
     ],
   })
   .then((object) => {
