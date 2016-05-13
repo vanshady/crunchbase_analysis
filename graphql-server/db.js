@@ -72,6 +72,20 @@ Object.Office = Object.hasOne(Office, {
   foreignKey: 'object_id',
 });
 
+Object.belongsToMany(Object, {
+  as: 'acquiredBy',
+  through: Acquisition,
+  foreignKey: 'acquired_object_id',
+  targetKey: 'acquiring_object_id',
+});
+
+Object.belongsToMany(Object, {
+  as: 'acquire',
+  through: Acquisition,
+  foreignKey: 'acquiring_object_id',
+  targetKey: 'acquiried_object_id',
+});
+
 module.exports = {
   Acquisition,
   Degree,

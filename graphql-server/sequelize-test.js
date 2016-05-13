@@ -50,9 +50,11 @@ Relationship
 
 Object
   .findOne({
-    where: { id: 'c:1' },
-    include: [{ model: Office, as: 'office' }],
+    where: { id: 'c:10' },
+    include: [
+      { model: Object, as: 'acquiredBy', through: Acquisition },
+    ],
   })
   .then((object) => {
-    console.log(object.office.get('region'));
+    console.log(object.acquiredBy[0].get('name'));
   });
