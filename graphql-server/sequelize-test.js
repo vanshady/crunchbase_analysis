@@ -51,10 +51,8 @@ Relationship
 Object
   .findOne({
     where: { id: 'c:1' },
-    include: [{ model: Relationship, as: 'relationship' }],
+    include: [{ model: Office, as: 'office' }],
   })
-  .then((people) => {
-    people.relationship.map((d) => {
-      console.log(d.get('title'));
-    });
+  .then((object) => {
+    console.log(object.office.get('region'));
   });

@@ -62,6 +62,16 @@ Object.Relationships = Object.hasMany(Relationship, {
   foreignKey: 'relationship_object_id',
 });
 
+Office.belongsTo(Object, {
+  as: 'object',
+  foreignKey: 'object_id',
+});
+
+Object.Office = Object.hasOne(Office, {
+  as: 'office',
+  foreignKey: 'object_id',
+});
+
 module.exports = {
   Acquisition,
   Degree,
