@@ -1,5 +1,5 @@
 const _ = require('lodash');
-import { resolver, attributeFields } from 'graphql-sequelize';
+import { resolver, attributeFields, defaultArgs } from 'graphql-sequelize';
 
 import {
   Acquisition,
@@ -102,114 +102,59 @@ const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
     fields: {
-      people: {
-        type: PeopleType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
-        resolve: resolver(People),
-      },
       acquisition: {
         type: AcquisitionType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(Acquisition),
         resolve: resolver(Acquisition),
       },
       degree: {
         type: DegreeType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(Degree),
         resolve: resolver(Degree),
       },
       fundingRound: {
         type: FundingRoundType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(FundingRound),
         resolve: resolver(FundingRound),
       },
       fund: {
         type: FundType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(Fund),
         resolve: resolver(Fund),
       },
       investment: {
         type: InvestmentType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(Investment),
         resolve: resolver(Investment),
       },
       IPO: {
         type: IPOType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(IPO),
         resolve: resolver(IPO),
       },
       milestone: {
         type: MilestoneType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(Milestone),
         resolve: resolver(Milestone),
       },
       object: {
         type: ObjectType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(Object),
         resolve: resolver(Object),
       },
       office: {
         type: OfficeType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(Office),
         resolve: resolver(Office),
+      },
+      people: {
+        type: PeopleType,
+        args: defaultArgs(People),
+        resolve: resolver(People),
       },
       relationship: {
         type: RelationshipType,
-        args: {
-          object_id: {
-            description: 'id of the user',
-            type: GraphQLString,
-          },
-        },
+        args: defaultArgs(Relationship),
         resolve: resolver(Relationship),
       },
     },
