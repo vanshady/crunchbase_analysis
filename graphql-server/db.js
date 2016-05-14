@@ -98,12 +98,12 @@ Object.Employees = Object.belongsToMany(People, {
   targetKey: 'person_object_id',
 });
 
-People.Companies = People.belongsToMany(Object, {
-  as: 'company',
-  through: Relationship,
-  foreignKey: 'person_object_id',
-  targetKey: 'relationship_object_id',
-});
+// People.Companies = People.belongsToMany(Object, {
+//   as: 'company',
+//   through: Relationship,
+//   foreignKey: 'person_object_id',
+//   targetKey: 'relationship_object_id',
+// });
 
 // People.Funds = People.belongsToMany(Fund, {
 //   as: 'fund',
