@@ -110,15 +110,15 @@ CBObject.Employees = CBObject.belongsToMany(People, {
   otherKey: 'person_object_id',
 });
 
-// People.Companies = People.belongsToMany(CBObject, {
-//   as: 'company',
-//   through: {
-//     model: Relationship,
-//     unique: false,
-//   },
-//   foreignKey: 'person_object_id',
-//   otherKey: 'relationship_object_id',
-// });
+People.Companies = People.belongsToMany(CBObject, {
+  as: 'company',
+  through: {
+    model: Relationship,
+    unique: false,
+  },
+  foreignKey: 'person_object_id',
+  otherKey: 'relationship_object_id',
+});
 
 People.Funds = People.belongsToMany(Fund, {
   as: 'fund',
