@@ -77,8 +77,8 @@ describe('Object -> acquired', () => {
   });
 });
 
-describe('Object -> acquiring', function() {
-  it('Fox Interactive Media should have acquired Flektor (around 15s)', function(done) {
+describe('Object -> acquiring', function () {
+  it('Fox Interactive Media should have acquired Flektor (around 15s)', function (done) {
     this.timeout(20000);
     Object
       .findOne({
@@ -111,9 +111,9 @@ describe('Object -> employee', () => {
   });
 });
 
-describe('Object -> employee', function() {
-  it('Digg should have four funding rounds (around 65s)', function(done) {
-    this.timeout(80000);
+describe('Object -> employee', function () {
+  it('Digg should have four funding rounds (around 80s)', function (done) {
+    this.timeout(120000);
     Object
       .findOne({
         where: { id: 'c:4' },

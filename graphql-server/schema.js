@@ -17,11 +17,11 @@ import {
 
 import {
   GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
+  // GraphQLString,
+  // GraphQLInt,
   GraphQLSchema,
   GraphQLList,
-  GraphQLNonNull,
+  // GraphQLNonNull,
 } from 'graphql';
 
 // Acquisition
