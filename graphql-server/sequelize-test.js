@@ -12,91 +12,119 @@ import {
   Relationship,
 } from './db';
 
-// Degree belongsTo people test
-Degree
-  .findOne({
-    where: { object_id: 'p:3262' },
-    include: [{ all: true }],
-  })
-  .then((degree) => {
-    console.log(degree.people.get('first_name') + ' ' + degree.people.get('last_name'));
-  });
+const should = require('chai').should();
+import { describe } from 'mocha';
 
-// People hasMany Degrees test
-People
-  .findOne({
-    where: { object_id: 'p:3262' },
-    include: [{ all: true }],
-  })
-  .then((people) => {
-    people.degree.map((d) => {
-      console.log(d.get('institution'));
-    });
+describe('Degree -> People', () => {
+  it('should return Nick Wilder', (done) => {
+    Degree
+      .findOne({
+        where: { object_id: 'p:3262' },
+        include: [{ all: true }],
+      })
+      .then((degree) => {
+        degree.get('institution').should.equal('Haverford College');
+        degree.people.get('first_name').should.equal('Nick');
+        degree.people.get('last_name').should.equal('Wilder');
+        degree.people.get('affiliation_name').should.equal('30Boxes');
+        done();
+      });
   });
+});
 
-// Relationship belongsTo People test
-Relationship
-  .findAll({
-    where: { person_object_id: 'p:3262' },
-    include: [{ all: true }],
-  })
-  .then((relationships) => {
-    relationships.map((r) => {
-      if (r.object) {
-        console.log(r.people.get('last_name') + ' works at ' + r.object.get('name'));
-      }
-    });
+describe('People -> Degree', () => {
+  it('Nick Wilder should have two degrees', (done) => {
+    People
+      .findOne({
+        where: { object_id: 'p:3262' },
+        include: [{ all: true }],
+      })
+      .then((people) => {
+        people.degree.should.have.length(2);
+        done();
+      });
   });
+});
 
-// acquired test
-Object
-  .findOne({
-    where: { id: 'c:10' },
-    include: [
-      { all: true },
-    ],
-  })
-  .then((object) => {
-    console.log(object.get('name') + ' is acquired by ' + object.acquired[0].get('name'));
+describe('Relationship -> People', () => {
+  it('Nick Wilder should have worked at eight companies', (done) => {
+    Relationship
+      .findAll({
+        where: { person_object_id: 'p:3262' },
+        include: [{ all: true }],
+      })
+      .then((relationships) => {
+        relationships.should.have.length(8);
+        done();
+      });
   });
+});
 
-// acquire test
-Object
-  .findOne({
-    where: { id: 'c:11' },
-    include: [
-      { all: true },
-    ],
-  })
-  .then((object) => {
-    console.log(object.get('name') + ' acquired ' + object.acquiring[0].get('name'));
+describe('Object -> acquired', () => {
+  it('Flektor should be acquired by Fox Interactive Media', (done) => {
+    Object
+      .findOne({
+        where: { id: 'c:10' },
+        include: [
+          { all: true },
+        ],
+      })
+      .then((object) => {
+        object.get('name').should.equal('Flektor');
+        object.acquired[0].get('name').should.equal('Fox Interactive Media');
+        done();
+      });
   });
+});
 
-// employee test
-Object
-  .findOne({
-    where: { id: 'c:10' },
-    include: [
-      { all: true },
-    ],
-  })
-  .then((object) => {
-    object.employee.map((r) => {
-      console.log(r.get('last_name') + ' works at ' + object.get('name'));
-    });
+describe('Object -> acquiring', function() {
+  it('Fox Interactive Media should have acquired Flektor (around 15s)', function(done) {
+    this.timeout(20000);
+    Object
+      .findOne({
+        where: { id: 'c:11' },
+        include: [
+          { all: true },
+        ],
+      })
+      .then((object) => {
+        object.get('name').should.equal('Fox Interactive Media');
+        object.acquiring[0].get('name').should.equal('Flektor');
+        done();
+      });
   });
+});
 
-// FundingRound test
-Object
-  .findOne({
-    where: { id: 'c:4' },
-    include: [
-      { all: true },
-    ],
-  })
-  .then((object) => {
-    console.log("Funding Round");
-    object.fundinground.map((r) => {
-      console.log(r.get('funding_round_type'));
-    });
+describe('Object -> employee', () => {
+  it('Flektor should have six employees', (done) => {
+    Object
+      .findOne({
+        where: { id: 'c:10' },
+        include: [
+          { all: true },
+        ],
+      })
+      .then((object) => {
+        object.employee.should.have.length(6);
+        done();
+      });
   });
+});
+
+describe('Object -> employee', function() {
+  it('Digg should have four funding rounds (around 65s)', function(done) {
+    this.timeout(80000);
+    Object
+      .findOne({
+        where: { id: 'c:4' },
+        include: [
+          { all: true },
+        ],
+      })
+      .then((object) => {
+        object.get('name').should.equal('Digg');
+        object.fundinground.should.have.length(4);
+        done();
+      });
+  });
+});
