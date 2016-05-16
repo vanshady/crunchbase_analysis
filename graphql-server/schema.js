@@ -79,19 +79,19 @@ const PeopleType = new GraphQLObjectType({
   fields: _.assign(attributeFields(People), {
     degree: {
       type: new GraphQLList(DegreeType),
-      resolve: resolver(People.Degrees, {
+      resolve: resolver(People.Degree, {
         separate: true,
       }),
     },
     company: {
       type: new GraphQLList(CBObjectType),
-      resolve: resolver(People.Companies, {
+      resolve: resolver(People.Company, {
         separate: true,
       }),
     },
     fund: {
       type: new GraphQLList(FundType),
-      resolve: resolver(People.Funds, {
+      resolve: resolver(People.Fund, {
         separate: true,
       }),
     },
