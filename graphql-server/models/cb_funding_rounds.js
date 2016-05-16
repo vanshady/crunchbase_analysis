@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => (
-  sequelize.define('funding_rounds', {
+  sequelize.define('cb_funding_rounds', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,

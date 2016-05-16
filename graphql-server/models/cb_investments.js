@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => (
-  sequelize.define('investments', {
+  sequelize.define('cb_investments', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
