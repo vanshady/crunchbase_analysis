@@ -21,7 +21,7 @@ Degree
   .then((degree) => {
     console.log(degree.people.get('first_name') + ' ' + degree.people.get('last_name'));
   });
-  
+
 // People hasMany Degrees test
 People
   .findOne({
@@ -29,7 +29,7 @@ People
     include: [{ all: true }],
   })
   .then((people) => {
-    people.degrees.map((d) => {
+    people.degree.map((d) => {
       console.log(d.get('institution'));
     });
   });
@@ -57,7 +57,7 @@ CBObject
     ],
   })
   .then((object) => {
-    console.log(object.get('name') + ' is acquired by ' + object.acquiredBy[0].get('name'));
+    console.log(object.get('name') + ' is acquired by ' + object.acquired[0].get('name'));
   });
 
 // acquire test
@@ -69,7 +69,7 @@ CBObject
     ],
   })
   .then((object) => {
-    console.log(object.get('name') + ' acquired ' + object.acquire[0].get('name'));
+    console.log(object.get('name') + ' acquired ' + object.acquiring[0].get('name'));
   });
 
 // employee test
