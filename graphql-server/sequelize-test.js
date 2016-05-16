@@ -6,7 +6,7 @@ import {
   Investment,
   IPO,
   Milestone,
-  CBObject,
+  Object,
   Office,
   People,
   Relationship,
@@ -49,7 +49,7 @@ Relationship
   });
 
 // acquired test
-CBObject
+Object
   .findOne({
     where: { id: 'c:10' },
     include: [
@@ -61,7 +61,7 @@ CBObject
   });
 
 // acquire test
-CBObject
+Object
   .findOne({
     where: { id: 'c:11' },
     include: [
@@ -73,7 +73,7 @@ CBObject
   });
 
 // employee test
-CBObject
+Object
   .findOne({
     where: { id: 'c:10' },
     include: [
@@ -83,5 +83,20 @@ CBObject
   .then((object) => {
     object.employee.map((r) => {
       console.log(r.get('last_name') + ' works at ' + object.get('name'));
+    });
+  });
+
+// FundingRound test
+Object
+  .findOne({
+    where: { id: 'c:4' },
+    include: [
+      { all: true },
+    ],
+  })
+  .then((object) => {
+    console.log("Funding Round");
+    object.fundinground.map((r) => {
+      console.log(r.get('funding_round_type'));
     });
   });

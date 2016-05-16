@@ -9,7 +9,7 @@ import {
   Investment,
   IPO,
   Milestone,
-  CBObject,
+  Object,
   Office,
   People,
   Relationship,
@@ -104,7 +104,7 @@ const MilestoneType = new GraphQLObjectType({
 // Office
 const OfficeObjectType = new GraphQLObjectType({
   name: 'OfficeObject',
-  fields: _.assign(attributeFields(CBObject)),
+  fields: _.assign(attributeFields(Object)),
 });
 
 const OfficeType = new GraphQLObjectType({
@@ -112,113 +112,113 @@ const OfficeType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Office), {
     object: {
       type: new GraphQLList(OfficeObjectType),
-      resolve: resolver(Office.CBObject, {
+      resolve: resolver(Office.Object, {
         separate: true,
       }),
     },
   }),
 });
 
-// CBObject
-const CBObjectAcquiredType = new GraphQLObjectType({
-  name: 'CBObjectAcquired',
-  fields: _.assign(attributeFields(CBObject)),
+// Object
+const ObjectAcquiredType = new GraphQLObjectType({
+  name: 'ObjectAcquired',
+  fields: _.assign(attributeFields(Object)),
 });
 
-const CBObjectAcquiringType = new GraphQLObjectType({
-  name: 'CBObjectAcquire',
-  fields: _.assign(attributeFields(CBObject)),
+const ObjectAcquiringType = new GraphQLObjectType({
+  name: 'ObjectAcquire',
+  fields: _.assign(attributeFields(Object)),
 });
 
-const CBObjectEmployeeType = new GraphQLObjectType({
-  name: 'CBObjectEmployee',
+const ObjectEmployeeType = new GraphQLObjectType({
+  name: 'ObjectEmployee',
   fields: _.assign(attributeFields(People)),
 });
 
-const CBObjectFundingRoundType = new GraphQLObjectType({
-  name: 'CBObjectFundingRound',
+const ObjectFundingRoundType = new GraphQLObjectType({
+  name: 'ObjectFundingRound',
   fields: _.assign(attributeFields(FundingRound)),
 });
 
-const CBObjectInvestmentType = new GraphQLObjectType({
-  name: 'CBObjectInvestment',
+const ObjectInvestmentType = new GraphQLObjectType({
+  name: 'ObjectInvestment',
   fields: _.assign(attributeFields(Fund)),
 });
 
-const CBObjectIPOType = new GraphQLObjectType({
-  name: 'CBObjectIPO',
+const ObjectIPOType = new GraphQLObjectType({
+  name: 'ObjectIPO',
   fields: _.assign(attributeFields(IPO)),
 });
 
-const CBObjectMilestoneType = new GraphQLObjectType({
-  name: 'CBObjectMilestone',
+const ObjectMilestoneType = new GraphQLObjectType({
+  name: 'ObjectMilestone',
   fields: _.assign(attributeFields(Milestone)),
 });
 
-const CBObjectOfficeType = new GraphQLObjectType({
-  name: 'CBObjectOffice',
+const ObjectOfficeType = new GraphQLObjectType({
+  name: 'ObjectOffice',
   fields: _.assign(attributeFields(Office)),
 });
 
-const CBObjectRelationshipType = new GraphQLObjectType({
-  name: 'CBObjectRelationship',
+const ObjectRelationshipType = new GraphQLObjectType({
+  name: 'ObjectRelationship',
   fields: _.assign(attributeFields(Relationship)),
 });
 
-const CBObjectType = new GraphQLObjectType({
-  name: 'CBObject',
-  fields: _.assign(attributeFields(CBObject), {
+const ObjectType = new GraphQLObjectType({
+  name: 'Object',
+  fields: _.assign(attributeFields(Object), {
     acquired: {
-      type: new GraphQLList(CBObjectAcquiredType),
-      resolve: resolver(CBObject.Acquired, {
+      type: new GraphQLList(ObjectAcquiredType),
+      resolve: resolver(Object.Acquired, {
         separate: true,
       }),
     },
     acquiring: {
-      type: new GraphQLList(CBObjectAcquiringType),
-      resolve: resolver(CBObject.Acquiring, {
+      type: new GraphQLList(ObjectAcquiringType),
+      resolve: resolver(Object.Acquiring, {
         separate: true,
       }),
     },
     employee: {
-      type: new GraphQLList(CBObjectEmployeeType),
-      resolve: resolver(CBObject.Employee, {
+      type: new GraphQLList(ObjectEmployeeType),
+      resolve: resolver(Object.Employee, {
         separate: true,
       }),
     },
     fundinground: {
-      type: new GraphQLList(CBObjectFundingRoundType),
-      resolve: resolver(CBObject.Acquired, {
+      type: new GraphQLList(ObjectFundingRoundType),
+      resolve: resolver(Object.FundingRound, {
         separate: true,
       }),
     },
     investment: {
-      type: new GraphQLList(CBObjectInvestmentType),
-      resolve: resolver(CBObject.Acquired, {
+      type: new GraphQLList(ObjectInvestmentType),
+      resolve: resolver(Object.Investment, {
         separate: true,
       }),
     },
     IPO: {
-      type: new GraphQLList(CBObjectIPOType),
-      resolve: resolver(CBObject.IPO, {
+      type: new GraphQLList(ObjectIPOType),
+      resolve: resolver(Object.IPO, {
         separate: true,
       }),
     },
     milestone: {
-      type: new GraphQLList(CBObjectMilestoneType),
-      resolve: resolver(CBObject.Milestone, {
+      type: new GraphQLList(ObjectMilestoneType),
+      resolve: resolver(Object.Milestone, {
         separate: true,
       }),
     },
     office: {
-      type: new GraphQLList(CBObjectOfficeType),
-      resolve: resolver(CBObject.Office, {
+      type: new GraphQLList(ObjectOfficeType),
+      resolve: resolver(Object.Office, {
         separate: true,
       }),
     },
     relationship: {
-      type: new GraphQLList(CBObjectRelationshipType),
-      resolve: resolver(CBObject.Relationship, {
+      type: new GraphQLList(ObjectRelationshipType),
+      resolve: resolver(Object.Relationship, {
         separate: true,
       }),
     },
@@ -228,7 +228,7 @@ const CBObjectType = new GraphQLObjectType({
 // People
 const PeopleCompanyType = new GraphQLObjectType({
   name: 'PeopleCompany',
-  fields: _.assign(attributeFields(CBObject)),
+  fields: _.assign(attributeFields(Object)),
 });
 
 const PeopleDegreeType = new GraphQLObjectType({
@@ -284,8 +284,8 @@ const PeopleType = new GraphQLObjectType({
 
 // Relationship
 const RelationshipObjectType = new GraphQLObjectType({
-  name: 'RelationshipCBObject',
-  fields: _.assign(attributeFields(CBObject)),
+  name: 'RelationshipObject',
+  fields: _.assign(attributeFields(Object)),
 });
 
 const RelationshipPeopleType = new GraphQLObjectType({
@@ -298,7 +298,7 @@ const RelationshipType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Relationship), {
     object: {
       type: new GraphQLList(RelationshipObjectType),
-      resolve: resolver(Relationship.CBObject, {
+      resolve: resolver(Relationship.Object, {
         separate: true,
       }),
     },
@@ -316,57 +316,57 @@ const schema = new GraphQLSchema({
     name: 'Query',
     fields: {
       acquisition: {
-        type: AcquisitionType,
+        type: new GraphQLList(AcquisitionType),
         args: defaultArgs(Acquisition),
         resolve: resolver(Acquisition),
       },
       degree: {
-        type: DegreeType,
+        type: new GraphQLList(DegreeType),
         args: defaultArgs(Degree),
         resolve: resolver(Degree),
       },
       fundingRound: {
-        type: FundingRoundType,
+        type: new GraphQLList(FundingRoundType),
         args: defaultArgs(FundingRound),
         resolve: resolver(FundingRound),
       },
       fund: {
-        type: FundType,
+        type: new GraphQLList(FundType),
         args: defaultArgs(Fund),
         resolve: resolver(Fund),
       },
       investment: {
-        type: InvestmentType,
+        type: new GraphQLList(InvestmentType),
         args: defaultArgs(Investment),
         resolve: resolver(Investment),
       },
       IPO: {
-        type: IPOType,
+        type: new GraphQLList(IPOType),
         args: defaultArgs(IPO),
         resolve: resolver(IPO),
       },
       milestone: {
-        type: MilestoneType,
+        type: new GraphQLList(MilestoneType),
         args: defaultArgs(Milestone),
         resolve: resolver(Milestone),
       },
       object: {
-        type: CBObjectType,
-        args: defaultArgs(CBObject),
-        resolve: resolver(CBObject),
+        type: new GraphQLList(ObjectType),
+        args: defaultArgs(Object),
+        resolve: resolver(Object),
       },
       office: {
-        type: OfficeType,
+        type: new GraphQLList(OfficeType),
         args: defaultArgs(Office),
         resolve: resolver(Office),
       },
       people: {
-        type: PeopleType,
+        type: new GraphQLList(PeopleType),
         args: defaultArgs(People),
         resolve: resolver(People),
       },
       relationship: {
-        type: RelationshipType,
+        type: new GraphQLList(RelationshipType),
         args: defaultArgs(Relationship),
         resolve: resolver(Relationship),
       },

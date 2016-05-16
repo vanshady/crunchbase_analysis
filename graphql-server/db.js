@@ -24,7 +24,7 @@ const Fund = sequelize.import(__dirname + '/models/cb_funds');
 const Investment = sequelize.import(__dirname + '/models/cb_investments');
 const IPO = sequelize.import(__dirname + '/models/cb_ipos');
 const Milestone = sequelize.import(__dirname + '/models/cb_milestones');
-const CBObject = sequelize.import(__dirname + '/models/cb_objects');
+const Object = sequelize.import(__dirname + '/models/cb_objects');
 const Office = sequelize.import(__dirname + '/models/cb_offices');
 const People = sequelize.import(__dirname + '/models/cb_people');
 const Relationship = sequelize.import(__dirname + '/models/cb_relationships');
@@ -41,7 +41,7 @@ Fund.Milestone = Fund.hasMany(Milestone, {
   foreignKey: 'object_id',
 });
 
-Fund.Investment = Fund.belongsToMany(CBObject, {
+Fund.Investment = Fund.belongsToMany(Object, {
   as: 'investment',
   through: {
     model: Investment,
@@ -51,8 +51,8 @@ Fund.Investment = Fund.belongsToMany(CBObject, {
   otherKey: 'funded_object_id',
 });
 
-// CBObject
-CBObject.Acquired = CBObject.belongsToMany(CBObject, {
+// Object
+Object.Acquired = Object.belongsToMany(Object, {
   as: 'acquired',
   through: {
     model: Acquisition,
@@ -62,7 +62,7 @@ CBObject.Acquired = CBObject.belongsToMany(CBObject, {
   // otherKey: 'acquiring_object_id',
 });
 
-CBObject.Acquiring = CBObject.belongsToMany(CBObject, {
+Object.Acquiring = Object.belongsToMany(Object, {
   as: 'acquiring',
   through: {
     model: Acquisition,
@@ -72,7 +72,7 @@ CBObject.Acquiring = CBObject.belongsToMany(CBObject, {
   // otherKey: 'acquiried_object_id',
 });
 
-CBObject.Employee = CBObject.belongsToMany(People, {
+Object.Employee = Object.belongsToMany(People, {
   as: 'employee',
   through: {
     model: Relationship,
@@ -82,12 +82,12 @@ CBObject.Employee = CBObject.belongsToMany(People, {
   otherKey: 'person_object_id',
 });
 
-CBObject.FundingRound = CBObject.hasMany(FundingRound, {
+Object.FundingRound = Object.hasMany(FundingRound, {
   as: 'fundinground',
   foreignKey: 'object_id',
 });
 
-CBObject.Investment = CBObject.belongsToMany(Fund, {
+Object.Investment = Object.belongsToMany(Fund, {
   as: 'funded',
   through: {
     model: Investment,
@@ -97,34 +97,34 @@ CBObject.Investment = CBObject.belongsToMany(Fund, {
   otherKey: 'investor_object_id',
 });
 
-CBObject.IPO = CBObject.hasMany(IPO, {
+Object.IPO = Object.hasMany(IPO, {
   as: 'IPO',
   foreignKey: 'object_id',
 });
 
-CBObject.Milestone = CBObject.hasMany(Milestone, {
+Object.Milestone = Object.hasMany(Milestone, {
   as: 'milestone',
   foreignKey: 'object_id',
 });
 
-CBObject.Office = CBObject.hasOne(Office, {
+Object.Office = Object.hasOne(Office, {
   as: 'office',
   foreignKey: 'object_id',
 });
 
-CBObject.Relationship = CBObject.hasMany(Relationship, {
+Object.Relationship = Object.hasMany(Relationship, {
   as: 'relationship',
   foreignKey: 'relationship_object_id',
 });
 
 // Office
-Office.CBObject = Office.belongsTo(CBObject, {
+Office.Object = Office.belongsTo(Object, {
   as: 'object',
   foreignKey: 'object_id',
 });
 
 // People
-People.Company = People.belongsToMany(CBObject, {
+People.Company = People.belongsToMany(Object, {
   as: 'company',
   through: {
     model: Relationship,
@@ -160,7 +160,7 @@ People.Relationship = People.hasMany(Relationship, {
 });
 
 // Relationship
-Relationship.CBObject = Relationship.belongsTo(CBObject, {
+Relationship.Object = Relationship.belongsTo(Object, {
   as: 'object',
   foreignKey: 'relationship_object_id',
 });
@@ -178,7 +178,7 @@ module.exports = {
   Investment,
   IPO,
   Milestone,
-  CBObject,
+  Object,
   Office,
   People,
   Relationship,
