@@ -16,7 +16,7 @@ import {
 } from './db';
 
 import {
-  GraphQLCBObjectType,
+  GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLSchema,
@@ -24,57 +24,57 @@ import {
   GraphQLNonNull,
 } from 'graphql';
 
-const AcquisitionType = new GraphQLCBObjectType({
+const AcquisitionType = new GraphQLObjectType({
   name: 'Acquisition',
   fields: _.assign(attributeFields(Acquisition)),
 });
 
-const DegreeType = new GraphQLCBObjectType({
+const DegreeType = new GraphQLObjectType({
   name: 'Degree',
   fields: _.assign(attributeFields(Degree)),
 });
 
-const FundingRoundType = new GraphQLCBObjectType({
+const FundingRoundType = new GraphQLObjectType({
   name: 'FundingRound',
   fields: _.assign(attributeFields(FundingRound)),
 });
 
-const FundType = new GraphQLCBObjectType({
+const FundType = new GraphQLObjectType({
   name: 'Fund',
   fields: _.assign(attributeFields(Fund)),
 });
 
-const InvestmentType = new GraphQLCBObjectType({
+const InvestmentType = new GraphQLObjectType({
   name: 'Investment',
   fields: _.assign(attributeFields(Investment)),
 });
 
-const IPOType = new GraphQLCBObjectType({
+const IPOType = new GraphQLObjectType({
   name: 'IPO',
   fields: _.assign(attributeFields(IPO)),
 });
 
-const MilestoneType = new GraphQLCBObjectType({
+const MilestoneType = new GraphQLObjectType({
   name: 'Milestone',
   fields: _.assign(attributeFields(Milestone)),
 });
 
-const OfficeType = new GraphQLCBObjectType({
+const OfficeType = new GraphQLObjectType({
   name: 'Office',
   fields: _.assign(attributeFields(Office)),
 });
 
-const RelationshipType = new GraphQLCBObjectType({
+const RelationshipType = new GraphQLObjectType({
   name: 'Relationship',
   fields: _.assign(attributeFields(Relationship)),
 });
 
-const CBObjectType = new GraphQLCBObjectType({
+const CBObjectType = new GraphQLObjectType({
   name: 'CBObject',
   fields: _.assign(attributeFields(CBObject)),
 });
 
-const PeopleType = new GraphQLCBObjectType({
+const PeopleType = new GraphQLObjectType({
   name: 'People',
   fields: _.assign(attributeFields(People), {
     degree: {
@@ -99,7 +99,7 @@ const PeopleType = new GraphQLCBObjectType({
 });
 
 const schema = new GraphQLSchema({
-  query: new GraphQLCBObjectType({
+  query: new GraphQLObjectType({
     name: 'Query',
     fields: {
       acquisition: {
