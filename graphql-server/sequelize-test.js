@@ -53,5 +53,17 @@ CBObject
     ],
   })
   .then((object) => {
-    console.log(object.acquiredBy[0].get('name'));
+    console.log(object.get('name') + ' is acquired by ' + object.acquiredBy[0].get('name'));
   });
+
+CBObject
+  .findOne({
+    where: { id: 'c:11' },
+    include: [
+      { all: true },
+    ],
+  })
+  .then((object) => {
+    console.log(object.get('name') + ' acquired ' + object.acquire[0].get('name'));
+  });
+

@@ -77,7 +77,7 @@ CBObject.Acquired = CBObject.belongsToMany(CBObject, {
     unique: false,
   },
   foreignKey: 'acquired_object_id',
-  otherKey: 'acquiring_object_id',
+  // otherKey: 'acquiring_object_id',
 });
 
 CBObject.Acquire = CBObject.belongsToMany(CBObject, {
@@ -87,7 +87,7 @@ CBObject.Acquire = CBObject.belongsToMany(CBObject, {
     unique: false,
   },
   foreignKey: 'acquiring_object_id',
-  otherKey: 'acquiried_object_id',
+  // otherKey: 'acquiried_object_id',
 });
 
 Fund.Investments = Fund.belongsToMany(CBObject, {
@@ -110,15 +110,15 @@ CBObject.Employees = CBObject.belongsToMany(People, {
   otherKey: 'person_object_id',
 });
 
-People.Companies = People.belongsToMany(CBObject, {
-  as: 'company',
-  through: {
-    model: Relationship,
-    unique: false,
-  },
-  foreignKey: 'person_object_id',
-  otherKey: 'relationship_object_id',
-});
+// People.Companies = People.belongsToMany(CBObject, {
+//   as: 'company',
+//   through: {
+//     model: Relationship,
+//     unique: false,
+//   },
+//   foreignKey: 'person_object_id',
+//   otherKey: 'relationship_object_id',
+// });
 
 People.Funds = People.belongsToMany(Fund, {
   as: 'fund',
