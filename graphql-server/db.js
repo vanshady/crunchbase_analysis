@@ -29,47 +29,29 @@ const Office = sequelize.import(__dirname + '/models/cb_offices');
 const People = sequelize.import(__dirname + '/models/cb_people');
 const Relationship = sequelize.import(__dirname + '/models/cb_relationships');
 
-// Association
+// Degree
 Degree.People = Degree.belongsTo(People, {
   as: 'people',
   foreignKey: 'object_id',
 });
 
-People.Degree = People.hasMany(Degree, {
-  as: 'degrees',
+// Fund
+Fund.Milestone = Fund.hasMany(Milestone, {
+  as: 'milestone',
   foreignKey: 'object_id',
 });
 
-Relationship.People = Relationship.belongsTo(People, {
-  as: 'people',
-  foreignKey: 'person_object_id',
+Fund.Investment = Fund.belongsToMany(CBObject, {
+  as: 'investor',
+  through: {
+    model: Investment,
+    unique: false,
+  },
+  foreignKey: 'investor_object_id',
+  otherKey: 'funded_object_id',
 });
 
-People.Relationship = People.hasMany(Relationship, {
-  as: 'relationships',
-  foreignKey: 'person_object_id',
-});
-
-Relationship.CBObject = Relationship.belongsTo(CBObject, {
-  as: 'object',
-  foreignKey: 'relationship_object_id',
-});
-
-CBObject.Relationship = CBObject.hasMany(Relationship, {
-  as: 'relationship',
-  foreignKey: 'relationship_object_id',
-});
-
-Office.CBObject = Office.belongsTo(CBObject, {
-  as: 'object',
-  foreignKey: 'object_id',
-});
-
-CBObject.Office = CBObject.hasOne(Office, {
-  as: 'office',
-  foreignKey: 'object_id',
-});
-
+// CBObject
 CBObject.Acquired = CBObject.belongsToMany(CBObject, {
   as: 'acquiredBy',
   through: {
@@ -90,14 +72,19 @@ CBObject.Acquire = CBObject.belongsToMany(CBObject, {
   // otherKey: 'acquiried_object_id',
 });
 
-Fund.Investment = Fund.belongsToMany(CBObject, {
-  as: 'investor',
+CBObject.Employee = CBObject.belongsToMany(People, {
+  as: 'employee',
   through: {
-    model: Investment,
+    model: Relationship,
     unique: false,
   },
-  foreignKey: 'investor_object_id',
-  otherKey: 'funded_object_id',
+  foreignKey: 'relationship_object_id',
+  otherKey: 'person_object_id',
+});
+
+CBObject.FundingRound = CBObject.hasMany(FundingRound, {
+  as: 'fundinground',
+  foreignKey: 'object_id',
 });
 
 CBObject.Investment = CBObject.belongsToMany(Fund, {
@@ -110,16 +97,33 @@ CBObject.Investment = CBObject.belongsToMany(Fund, {
   otherKey: 'investor_object_id',
 });
 
-CBObject.Employee = CBObject.belongsToMany(People, {
-  as: 'employee',
-  through: {
-    model: Relationship,
-    unique: false,
-  },
-  foreignKey: 'relationship_object_id',
-  otherKey: 'person_object_id',
+CBObject.IPO = CBObject.hasMany(IPO, {
+  as: 'IPO',
+  foreignKey: 'object_id',
 });
 
+CBObject.Milestone = CBObject.hasMany(Milestone, {
+  as: 'milestone',
+  foreignKey: 'object_id',
+});
+
+CBObject.Office = CBObject.hasOne(Office, {
+  as: 'office',
+  foreignKey: 'object_id',
+});
+
+CBObject.Relationship = CBObject.hasMany(Relationship, {
+  as: 'relationship',
+  foreignKey: 'relationship_object_id',
+});
+
+// Office
+Office.CBObject = Office.belongsTo(CBObject, {
+  as: 'object',
+  foreignKey: 'object_id',
+});
+
+// People
 People.Company = People.belongsToMany(CBObject, {
   as: 'company',
   through: {
@@ -128,6 +132,11 @@ People.Company = People.belongsToMany(CBObject, {
   },
   foreignKey: 'person_object_id',
   otherKey: 'relationship_object_id',
+});
+
+People.Degree = People.hasMany(Degree, {
+  as: 'degree',
+  foreignKey: 'object_id',
 });
 
 People.Fund = People.belongsToMany(Fund, {
@@ -145,24 +154,20 @@ People.Milestone = People.hasMany(Milestone, {
   foreignKey: 'object_id',
 });
 
-CBObject.Milestone = CBObject.hasMany(Milestone, {
-  as: 'milestone',
-  foreignKey: 'object_id',
+People.Relationship = People.hasMany(Relationship, {
+  as: 'relationship',
+  foreignKey: 'person_object_id',
 });
 
-Fund.Milestone = Fund.hasMany(Milestone, {
-  as: 'milestone',
-  foreignKey: 'object_id',
+// Relationship
+Relationship.CBObject = Relationship.belongsTo(CBObject, {
+  as: 'object',
+  foreignKey: 'relationship_object_id',
 });
 
-CBObject.FundingRound = CBObject.hasMany(FundingRound, {
-  as: 'fundinground',
-  foreignKey: 'object_id',
-});
-
-CBObject.IPO = CBObject.hasMany(IPO, {
-  as: 'IPO',
-  foreignKey: 'object_id',
+Relationship.People = Relationship.belongsTo(People, {
+  as: 'people',
+  foreignKey: 'person_object_id',
 });
 
 module.exports = {
