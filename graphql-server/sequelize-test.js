@@ -12,6 +12,7 @@ import {
   Relationship,
 } from './db';
 
+// Degree belongsTo people test
 Degree
   .findOne({
     where: { object_id: 'p:3262' },
@@ -20,7 +21,8 @@ Degree
   .then((degree) => {
     console.log(degree.people.get('first_name') + ' ' + degree.people.get('last_name'));
   });
-
+  
+// People hasMany Degrees test
 People
   .findOne({
     where: { object_id: 'p:3262' },
@@ -32,6 +34,7 @@ People
     });
   });
 
+// Relationship belongsTo People test
 Relationship
   .findAll({
     where: { person_object_id: 'p:3262' },
@@ -45,6 +48,7 @@ Relationship
     });
   });
 
+// acquired test
 CBObject
   .findOne({
     where: { id: 'c:10' },
@@ -56,6 +60,7 @@ CBObject
     console.log(object.get('name') + ' is acquired by ' + object.acquiredBy[0].get('name'));
   });
 
+// acquire test
 CBObject
   .findOne({
     where: { id: 'c:11' },
@@ -67,3 +72,16 @@ CBObject
     console.log(object.get('name') + ' acquired ' + object.acquire[0].get('name'));
   });
 
+// employee test
+CBObject
+  .findOne({
+    where: { id: 'c:10' },
+    include: [
+      { all: true },
+    ],
+  })
+  .then((object) => {
+    object.employee.map((r) => {
+      console.log(r.get('last_name') + ' works at ' + object.get('name'));
+    });
+  });
