@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => (
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true,
     },
     fund_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
+      primaryKey: true,
     },
     object_id: {
       type: DataTypes.STRING,
