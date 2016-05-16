@@ -6,7 +6,7 @@ import {
   Investment,
   IPO,
   Milestone,
-  Object,
+  CBObject,
   Office,
   People,
   Relationship,
@@ -45,7 +45,7 @@ Relationship
     });
   });
 
-Object
+CBObject
   .findOne({
     where: { id: 'c:10' },
     include: [

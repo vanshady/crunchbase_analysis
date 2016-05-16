@@ -9,7 +9,7 @@ import {
   Investment,
   IPO,
   Milestone,
-  Object,
+  CBObject,
   Office,
   People,
   Relationship,
@@ -69,9 +69,9 @@ const RelationshipType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Relationship)),
 });
 
-const ObjectType = new GraphQLObjectType({
-  name: 'Object',
-  fields: _.assign(attributeFields(Object)),
+const CBObjectType = new GraphQLObjectType({
+  name: 'CBObject',
+  fields: _.assign(attributeFields(CBObject)),
 });
 
 const PeopleType = new GraphQLObjectType({
@@ -84,7 +84,7 @@ const PeopleType = new GraphQLObjectType({
       }),
     },
     company: {
-      type: new GraphQLList(ObjectType),
+      type: new GraphQLList(CBObjectType),
       resolve: resolver(People.Companies, {
         separate: true,
       }),
@@ -138,9 +138,9 @@ const schema = new GraphQLSchema({
         resolve: resolver(Milestone),
       },
       object: {
-        type: ObjectType,
-        args: defaultArgs(Object),
-        resolve: resolver(Object),
+        type: CBObjectType,
+        args: defaultArgs(CBObject),
+        resolve: resolver(CBObject),
       },
       office: {
         type: OfficeType,
