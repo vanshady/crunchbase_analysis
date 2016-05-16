@@ -1,7 +1,7 @@
 {
   "name": "graphql-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "A graphql server that can return the data of crunchbase 2013 snapshot",
   "main": "index.js",
   "scripts": {
     "test": "nodemon --exec npm run babel-node -- sequelize-test.js",
