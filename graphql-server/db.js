@@ -35,7 +35,7 @@ Degree.People = Degree.belongsTo(People, {
   foreignKey: 'object_id',
 });
 
-People.Degrees = People.hasMany(Degree, {
+People.Degree = People.hasMany(Degree, {
   as: 'degrees',
   foreignKey: 'object_id',
 });
@@ -45,27 +45,27 @@ Relationship.People = Relationship.belongsTo(People, {
   foreignKey: 'person_object_id',
 });
 
-People.Relationships = People.hasMany(Relationship, {
+People.Relationship = People.hasMany(Relationship, {
   as: 'relationships',
   foreignKey: 'person_object_id',
 });
 
-Relationship.CBObjects = Relationship.belongsTo(CBObject, {
+Relationship.CBObject = Relationship.belongsTo(CBObject, {
   as: 'object',
   foreignKey: 'relationship_object_id',
 });
 
-CBObject.Relationships = CBObject.hasMany(Relationship, {
+CBObject.Relationship = CBObject.hasMany(Relationship, {
   as: 'relationship',
   foreignKey: 'relationship_object_id',
 });
 
-Office.CBObjects = Office.belongsTo(CBObject, {
+Office.CBObject = Office.belongsTo(CBObject, {
   as: 'object',
   foreignKey: 'object_id',
 });
 
-CBObject.Offices = CBObject.hasOne(Office, {
+CBObject.Office = CBObject.hasOne(Office, {
   as: 'office',
   foreignKey: 'object_id',
 });
@@ -90,8 +90,8 @@ CBObject.Acquire = CBObject.belongsToMany(CBObject, {
   // otherKey: 'acquiried_object_id',
 });
 
-Fund.Investments = Fund.belongsToMany(CBObject, {
-  as: 'investment',
+Fund.Investment = Fund.belongsToMany(CBObject, {
+  as: 'investor',
   through: {
     model: Investment,
     unique: false,
@@ -100,7 +100,17 @@ Fund.Investments = Fund.belongsToMany(CBObject, {
   otherKey: 'funded_object_id',
 });
 
-CBObject.Employees = CBObject.belongsToMany(People, {
+CBObject.Investment = CBObject.belongsToMany(Fund, {
+  as: 'funded',
+  through: {
+    model: Investment,
+    unique: false,
+  },
+  foreignKey: 'funded_object_id',
+  otherKey: 'investor_object_id',
+});
+
+CBObject.Employee = CBObject.belongsToMany(People, {
   as: 'employee',
   through: {
     model: Relationship,
@@ -110,7 +120,7 @@ CBObject.Employees = CBObject.belongsToMany(People, {
   otherKey: 'person_object_id',
 });
 
-People.Companies = People.belongsToMany(CBObject, {
+People.Company = People.belongsToMany(CBObject, {
   as: 'company',
   through: {
     model: Relationship,
@@ -120,7 +130,7 @@ People.Companies = People.belongsToMany(CBObject, {
   otherKey: 'relationship_object_id',
 });
 
-People.Funds = People.belongsToMany(Fund, {
+People.Fund = People.belongsToMany(Fund, {
   as: 'fund',
   through: {
     model: Relationship,
@@ -128,6 +138,31 @@ People.Funds = People.belongsToMany(Fund, {
   },
   foreignKey: 'person_object_id',
   otherKey: 'relationship_object_id',
+});
+
+People.Milestone = People.hasMany(Milestone, {
+  as: 'milestone',
+  foreignKey: 'object_id',
+});
+
+CBObject.Milestone = CBObject.hasMany(Milestone, {
+  as: 'milestone',
+  foreignKey: 'object_id',
+});
+
+Fund.Milestone = Fund.hasMany(Milestone, {
+  as: 'milestone',
+  foreignKey: 'object_id',
+});
+
+CBObject.FundingRound = CBObject.hasMany(FundingRound, {
+  as: 'fundinground',
+  foreignKey: 'object_id',
+});
+
+CBObject.IPO = CBObject.hasMany(IPO, {
+  as: 'IPO',
+  foreignKey: 'object_id',
 });
 
 module.exports = {
