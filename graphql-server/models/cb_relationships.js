@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => (
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
+      primaryKey: true,
     },
     relationship_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true,
     },
     person_object_id: {
       type: DataTypes.STRING,
