@@ -42,7 +42,7 @@ Fund.Milestone = Fund.hasMany(Milestone, {
 });
 
 Fund.Investment = Fund.belongsToMany(CBObject, {
-  as: 'investor',
+  as: 'investment',
   through: {
     model: Investment,
     unique: false,
@@ -53,7 +53,7 @@ Fund.Investment = Fund.belongsToMany(CBObject, {
 
 // CBObject
 CBObject.Acquired = CBObject.belongsToMany(CBObject, {
-  as: 'acquiredBy',
+  as: 'acquired',
   through: {
     model: Acquisition,
     unique: false,
@@ -62,8 +62,8 @@ CBObject.Acquired = CBObject.belongsToMany(CBObject, {
   // otherKey: 'acquiring_object_id',
 });
 
-CBObject.Acquire = CBObject.belongsToMany(CBObject, {
-  as: 'acquire',
+CBObject.Acquiring = CBObject.belongsToMany(CBObject, {
+  as: 'acquiring',
   through: {
     model: Acquisition,
     unique: false,
