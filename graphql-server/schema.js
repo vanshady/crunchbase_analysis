@@ -89,12 +89,12 @@ const PeopleType = new GraphQLObjectType({
         separate: true,
       }),
     },
-    // fund: {
-    //   type: new GraphQLList(FundType),
-    //   resolve: resolver(People.Funds, {
-    //     separate: true,
-    //   }),
-    // },
+    fund: {
+      type: new GraphQLList(FundType),
+      resolve: resolver(People.Funds, {
+        separate: true,
+      }),
+    },
   }),
 });
 

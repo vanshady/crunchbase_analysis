@@ -72,44 +72,62 @@ CBObject.Offices = CBObject.hasOne(Office, {
 
 CBObject.Acquired = CBObject.belongsToMany(CBObject, {
   as: 'acquiredBy',
-  through: Acquisition,
+  through: {
+    model: Acquisition,
+    unique: false,
+  },
   foreignKey: 'acquired_object_id',
-  targetKey: 'acquiring_object_id',
+  otherKey: 'acquiring_object_id',
 });
 
 CBObject.Acquire = CBObject.belongsToMany(CBObject, {
   as: 'acquire',
-  through: Acquisition,
+  through: {
+    model: Acquisition,
+    unique: false,
+  },
   foreignKey: 'acquiring_object_id',
-  targetKey: 'acquiried_object_id',
+  otherKey: 'acquiried_object_id',
 });
 
 Fund.Investments = Fund.belongsToMany(CBObject, {
   as: 'investment',
-  through: Investment,
+  through: {
+    model: Investment,
+    unique: false,
+  },
   foreignKey: 'investor_object_id',
-  targetKey: 'funded_object_id',
+  otherKey: 'funded_object_id',
 });
 
 CBObject.Employees = CBObject.belongsToMany(People, {
   as: 'employee',
-  through: Relationship,
+  through: {
+    model: Relationship,
+    unique: false,
+  },
   foreignKey: 'relationship_object_id',
-  targetKey: 'person_object_id',
+  otherKey: 'person_object_id',
 });
 
 People.Companies = People.belongsToMany(CBObject, {
   as: 'company',
-  through: Relationship,
+  through: {
+    model: Relationship,
+    unique: false,
+  },
   foreignKey: 'person_object_id',
-  targetKey: 'relationship_object_id',
+  otherKey: 'relationship_object_id',
 });
 
 People.Funds = People.belongsToMany(Fund, {
   as: 'fund',
-  through: Relationship,
+  through: {
+    model: Relationship,
+    unique: false,
+  },
   foreignKey: 'person_object_id',
-  targetKey: 'relationship_object_id',
+  otherKey: 'relationship_object_id',
 });
 
 module.exports = {
