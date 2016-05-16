@@ -9,14 +9,14 @@ import {
   Investment,
   IPO,
   Milestone,
-  Object,
+  CBObject,
   Office,
   People,
   Relationship,
 } from './db';
 
 import {
-  GraphQLObjectType,
+  GraphQLCBObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLSchema,
@@ -24,57 +24,57 @@ import {
   GraphQLNonNull,
 } from 'graphql';
 
-const AcquisitionType = new GraphQLObjectType({
+const AcquisitionType = new GraphQLCBObjectType({
   name: 'Acquisition',
   fields: _.assign(attributeFields(Acquisition)),
 });
 
-const DegreeType = new GraphQLObjectType({
+const DegreeType = new GraphQLCBObjectType({
   name: 'Degree',
   fields: _.assign(attributeFields(Degree)),
 });
 
-const FundingRoundType = new GraphQLObjectType({
+const FundingRoundType = new GraphQLCBObjectType({
   name: 'FundingRound',
   fields: _.assign(attributeFields(FundingRound)),
 });
 
-const FundType = new GraphQLObjectType({
+const FundType = new GraphQLCBObjectType({
   name: 'Fund',
   fields: _.assign(attributeFields(Fund)),
 });
 
-const InvestmentType = new GraphQLObjectType({
+const InvestmentType = new GraphQLCBObjectType({
   name: 'Investment',
   fields: _.assign(attributeFields(Investment)),
 });
 
-const IPOType = new GraphQLObjectType({
+const IPOType = new GraphQLCBObjectType({
   name: 'IPO',
   fields: _.assign(attributeFields(IPO)),
 });
 
-const MilestoneType = new GraphQLObjectType({
+const MilestoneType = new GraphQLCBObjectType({
   name: 'Milestone',
   fields: _.assign(attributeFields(Milestone)),
 });
 
-const OfficeType = new GraphQLObjectType({
+const OfficeType = new GraphQLCBObjectType({
   name: 'Office',
   fields: _.assign(attributeFields(Office)),
 });
 
-const RelationshipType = new GraphQLObjectType({
+const RelationshipType = new GraphQLCBObjectType({
   name: 'Relationship',
   fields: _.assign(attributeFields(Relationship)),
 });
 
-const ObjectType = new GraphQLObjectType({
-  name: 'Object',
-  fields: _.assign(attributeFields(Object)),
+const CBObjectType = new GraphQLCBObjectType({
+  name: 'CBObject',
+  fields: _.assign(attributeFields(CBObject)),
 });
 
-const PeopleType = new GraphQLObjectType({
+const PeopleType = new GraphQLCBObjectType({
   name: 'People',
   fields: _.assign(attributeFields(People), {
     degree: {
@@ -84,7 +84,7 @@ const PeopleType = new GraphQLObjectType({
       }),
     },
     company: {
-      type: new GraphQLList(ObjectType),
+      type: new GraphQLList(CBObjectType),
       resolve: resolver(People.Companies, {
         separate: true,
       }),
@@ -99,7 +99,7 @@ const PeopleType = new GraphQLObjectType({
 });
 
 const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
+  query: new GraphQLCBObjectType({
     name: 'Query',
     fields: {
       acquisition: {
@@ -138,9 +138,9 @@ const schema = new GraphQLSchema({
         resolve: resolver(Milestone),
       },
       object: {
-        type: ObjectType,
-        args: defaultArgs(Object),
-        resolve: resolver(Object),
+        type: CBObjectType,
+        args: defaultArgs(CBObject),
+        resolve: resolver(CBObject),
       },
       office: {
         type: OfficeType,
