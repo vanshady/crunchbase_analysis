@@ -41,9 +41,7 @@ const DegreeType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Degree), {
     people: {
       type: new GraphQLList(DegreePeopleType),
-      resolve: resolver(Degree.People, {
-        separate: true,
-      }),
+      resolve: resolver(Degree.People),
     },
   }),
 });
@@ -70,15 +68,11 @@ const FundType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Fund), {
     milestone: {
       type: new GraphQLList(FundMilestoneType),
-      resolve: resolver(Fund.Milestone, {
-        separate: true,
-      }),
+      resolve: resolver(Fund.Milestone),
     },
     investment: {
       type: new GraphQLList(FundInvestmentType),
-      resolve: resolver(Fund.Investment, {
-        separate: true,
-      }),
+      resolve: resolver(Fund.Investment),
     },
   }),
 });
@@ -112,9 +106,7 @@ const OfficeType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Office), {
     object: {
       type: new GraphQLList(OfficeObjectType),
-      resolve: resolver(Office.Object, {
-        separate: true,
-      }),
+      resolve: resolver(Office.Object),
     },
   }),
 });
@@ -170,57 +162,39 @@ const ObjectType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Object), {
     acquired: {
       type: new GraphQLList(ObjectAcquiredType),
-      resolve: resolver(Object.Acquired, {
-        separate: true,
-      }),
+      resolve: resolver(Object.Acquired),
     },
     acquiring: {
       type: new GraphQLList(ObjectAcquiringType),
-      resolve: resolver(Object.Acquiring, {
-        separate: true,
-      }),
+      resolve: resolver(Object.Acquiring),
     },
     employee: {
       type: new GraphQLList(ObjectEmployeeType),
-      resolve: resolver(Object.Employee, {
-        separate: true,
-      }),
+      resolve: resolver(Object.Employee),
     },
     fundinground: {
       type: new GraphQLList(ObjectFundingRoundType),
-      resolve: resolver(Object.FundingRound, {
-        separate: true,
-      }),
+      resolve: resolver(Object.FundingRound),
     },
     investment: {
       type: new GraphQLList(ObjectInvestmentType),
-      resolve: resolver(Object.Investment, {
-        separate: true,
-      }),
+      resolve: resolver(Object.Investment),
     },
     IPO: {
       type: new GraphQLList(ObjectIPOType),
-      resolve: resolver(Object.IPO, {
-        separate: true,
-      }),
+      resolve: resolver(Object.IPO),
     },
     milestone: {
       type: new GraphQLList(ObjectMilestoneType),
-      resolve: resolver(Object.Milestone, {
-        separate: true,
-      }),
+      resolve: resolver(Object.Milestone),
     },
     office: {
       type: new GraphQLList(ObjectOfficeType),
-      resolve: resolver(Object.Office, {
-        separate: true,
-      }),
+      resolve: resolver(Object.Office),
     },
     relationship: {
       type: new GraphQLList(ObjectRelationshipType),
-      resolve: resolver(Object.Relationship, {
-        separate: true,
-      }),
+      resolve: resolver(Object.Relationship),
     },
   }),
 });
@@ -251,33 +225,23 @@ const PeopleType = new GraphQLObjectType({
   fields: _.assign(attributeFields(People), {
     company: {
       type: new GraphQLList(PeopleCompanyType),
-      resolve: resolver(People.Company, {
-        separate: true,
-      }),
+      resolve: resolver(People.Company),
     },
     degree: {
       type: new GraphQLList(PeopleDegreeType),
-      resolve: resolver(People.Degree, {
-        separate: true,
-      }),
+      resolve: resolver(People.Degree),
     },
     fund: {
       type: new GraphQLList(PeopleFundType),
-      resolve: resolver(People.Fund, {
-        separate: true,
-      }),
+      resolve: resolver(People.Fund),
     },
     milestone: {
       type: new GraphQLList(MilestoneType),
-      resolve: resolver(People.Milestone, {
-        separate: true,
-      }),
+      resolve: resolver(People.Milestone),
     },
     relationship: {
       type: new GraphQLList(PeopleRelationshipType),
-      resolve: resolver(People.Relationship, {
-        separate: true,
-      }),
+      resolve: resolver(People.Relationship),
     },
   }),
 });
@@ -298,15 +262,11 @@ const RelationshipType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Relationship), {
     object: {
       type: new GraphQLList(RelationshipObjectType),
-      resolve: resolver(Relationship.Object, {
-        separate: true,
-      }),
+      resolve: resolver(Relationship.Object),
     },
     people: {
       type: new GraphQLList(RelationshipPeopleType),
-      resolve: resolver(Relationship.People, {
-        separate: true,
-      }),
+      resolve: resolver(Relationship.People),
     },
   }),
 });
