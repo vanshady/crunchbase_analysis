@@ -2,13 +2,14 @@
 The crunchbase 2013 snapshot data can be downloaded from
 https://data.crunchbase.com/docs/2013-snapshot
 
-## Install the dependencies
+## Clone the code and install the dependencies
 ```
+git clone https://github.com/vanshady/crunchbase_analysis.git
 npm install
 ```
 
 ## Configuration
-After importing the data, configure ```config.js``` to match your database settings.
+After importing the MySQL data, configure ```config.js``` to match your database settings.
 
 ## To test sequelize
 ```
