@@ -12,8 +12,8 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register sequelize-test.js",
-    "start": "npm run lint && npm run test && npm run babel-node -- server.js",
-    "devStart": "nodemon --exec npm run babel-node -- server.js",
+    "start": "npm run lint && npm run babel-node -- server.js",
+    "devstart": "npm run lint && nodemon --exec npm run babel-node -- server.js",
     "babel-node": "babel-node --presets=es2015-node6",
     "lint": "eslint models config.js db.js schema.js server.js"
   },

@@ -15,7 +15,12 @@ After importing the data, configure ```config.js``` to match your database setti
 npm test
 ```
 
-## To start the GraphQL sever
+## To start the GraphQL sever with nodemon
+```
+npm run devstart
+```
+
+## To start the GraphQL sever without nodemon
 ```
 npm start
 ```
