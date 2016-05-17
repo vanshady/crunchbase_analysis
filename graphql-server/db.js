@@ -107,9 +107,14 @@ Object.Milestone = Object.hasMany(Milestone, {
   foreignKey: 'object_id',
 });
 
-Object.Office = Object.hasOne(Office, {
+Object.Office = Object.hasMany(Office, {
   as: 'office',
   foreignKey: 'object_id',
+});
+
+Object.Parent = Object.hasOne(Object, {
+  as: 'parent',
+  foreignKey: 'parent_id',
 });
 
 Object.Relationship = Object.hasMany(Relationship, {
@@ -137,16 +142,6 @@ People.Company = People.belongsToMany(Object, {
 People.Degree = People.hasMany(Degree, {
   as: 'degree',
   foreignKey: 'object_id',
-});
-
-People.Fund = People.belongsToMany(Fund, {
-  as: 'fund',
-  through: {
-    model: Relationship,
-    unique: false,
-  },
-  foreignKey: 'person_object_id',
-  otherKey: 'relationship_object_id',
 });
 
 People.Milestone = People.hasMany(Milestone, {

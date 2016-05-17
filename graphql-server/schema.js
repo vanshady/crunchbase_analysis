@@ -152,6 +152,11 @@ const ObjectOfficeType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Office)),
 });
 
+const ObjectParentType = new GraphQLObjectType({
+  name: 'ObjectParent',
+  fields: _.assign(attributeFields(Object)),
+});
+
 const ObjectRelationshipType = new GraphQLObjectType({
   name: 'ObjectRelationship',
   fields: _.assign(attributeFields(Relationship)),
@@ -192,6 +197,10 @@ const ObjectType = new GraphQLObjectType({
       type: new GraphQLList(ObjectOfficeType),
       resolve: resolver(Object.Office),
     },
+    parent: {
+      type: new GraphQLList(ObjectParentType),
+      resolve: resolver(Object.Parent),
+    },
     relationship: {
       type: new GraphQLList(ObjectRelationshipType),
       resolve: resolver(Object.Relationship),
@@ -210,11 +219,6 @@ const PeopleDegreeType = new GraphQLObjectType({
   fields: _.assign(attributeFields(Degree)),
 });
 
-const PeopleFundType = new GraphQLObjectType({
-  name: 'PeopleFund',
-  fields: _.assign(attributeFields(Fund)),
-});
-
 const PeopleRelationshipType = new GraphQLObjectType({
   name: 'PeopleRelationship',
   fields: _.assign(attributeFields(Relationship)),
@@ -230,10 +234,6 @@ const PeopleType = new GraphQLObjectType({
     degree: {
       type: new GraphQLList(PeopleDegreeType),
       resolve: resolver(People.Degree),
-    },
-    fund: {
-      type: new GraphQLList(PeopleFundType),
-      resolve: resolver(People.Fund),
     },
     milestone: {
       type: new GraphQLList(MilestoneType),
