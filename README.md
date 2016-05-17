@@ -26,6 +26,9 @@ npm run devstart
 npm start
 ```
 
+## To use the server
+Go to http://127.0.0.1:3000/graphql and type your query!
+
 ## Directory Tree
 ```
 |-- graphql-server
