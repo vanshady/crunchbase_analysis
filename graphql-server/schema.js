@@ -1,5 +1,13 @@
-const _ = require('lodash');
 import { resolver, attributeFields, defaultArgs } from 'graphql-sequelize';
+
+import {
+  GraphQLObjectType,
+  // GraphQLString,
+  // GraphQLInt,
+  GraphQLSchema,
+  GraphQLList,
+  // GraphQLNonNull,
+} from 'graphql';
 
 import {
   Acquisition,
@@ -15,14 +23,7 @@ import {
   Relationship,
 } from './db';
 
-import {
-  GraphQLObjectType,
-  // GraphQLString,
-  // GraphQLInt,
-  GraphQLSchema,
-  GraphQLList,
-  // GraphQLNonNull,
-} from 'graphql';
+const _ = require('lodash');
 
 // Acquisition
 const AcquisitionType = new GraphQLObjectType({

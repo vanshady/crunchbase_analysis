@@ -1,7 +1,10 @@
 const Sequelize = require('sequelize');
 
+const path = require('path');
+
 // Setting up the config
 const config = require('./config');
+
 const sequelize = new Sequelize(config.database,
   config.username,
   config.password,
@@ -17,17 +20,17 @@ sequelize
   });
 
 // Models
-const Acquisition = sequelize.import(__dirname + '/models/cb_acquisitions');
-const Degree = sequelize.import(__dirname + '/models/cb_degrees');
-const FundingRound = sequelize.import(__dirname + '/models/cb_funding_rounds');
-const Fund = sequelize.import(__dirname + '/models/cb_funds');
-const Investment = sequelize.import(__dirname + '/models/cb_investments');
-const IPO = sequelize.import(__dirname + '/models/cb_ipos');
-const Milestone = sequelize.import(__dirname + '/models/cb_milestones');
-const Object = sequelize.import(__dirname + '/models/cb_objects');
-const Office = sequelize.import(__dirname + '/models/cb_offices');
-const People = sequelize.import(__dirname + '/models/cb_people');
-const Relationship = sequelize.import(__dirname + '/models/cb_relationships');
+const Acquisition = sequelize.import(path.join(__dirname, '/models/cb_acquisitions'));
+const Degree = sequelize.import(path.join(__dirname, '/models/cb_degrees'));
+const FundingRound = sequelize.import(path.join(__dirname, '/models/cb_funding_rounds'));
+const Fund = sequelize.import(path.join(__dirname, '/models/cb_funds'));
+const Investment = sequelize.import(path.join(__dirname, '/models/cb_investments'));
+const IPO = sequelize.import(path.join(__dirname, '/models/cb_ipos'));
+const Milestone = sequelize.import(path.join(__dirname, '/models/cb_milestones'));
+const Object = sequelize.import(path.join(__dirname, '/models/cb_objects'));
+const Office = sequelize.import(path.join(__dirname, '/models/cb_offices'));
+const People = sequelize.import(path.join(__dirname, '/models/cb_people'));
+const Relationship = sequelize.import(path.join(__dirname, '/models/cb_relationships'));
 
 // Degree
 Degree.People = Degree.belongsTo(People, {
